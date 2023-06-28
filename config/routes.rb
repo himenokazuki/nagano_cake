@@ -1,70 +1,53 @@
 Rails.application.routes.draw do
+  # new,index,edit,update,show,destroy,create
+
+  #items routing(resources)
+  # index,create -> ~/items
+  # new -> ~/items/new
+  # show,update,destroy -> ~/item/:id
+  # edit -> ~/item/:id/edit
+
+  root to: 'homes#top'
+  get '/about'=>'homes#about'
+  resources :items,only:[:show,:index]
+  #get '/customers/sign_up'=>'customers#new'
+  #resources :registrations,only:[:create]
+  #delete '/customers/sign_out'=>'cusutomers#destroy'
+ 
+
+  
+
   namespace :admin do
-    namespace :custommers do
-      get 'show/show'
-    end
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    update 'customers/update'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    post 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    patch 'items/update'
-  end
-  namespace :admin do
+
+    resources :items
+    resources :customers,except:[:new,:create,:destroy]
+    resources :orders,only:[:show]
     get 'homes/top'
+
+    delete '/admin/sign_out'=>'sessions#destoroy'
   end
-  namespace :admin do
-    get 'sessions/new'
-    post 'sessions/create'
-    delete 'sessions/destroy'
+   scope module: :public do
+   get '/cart_items/destroy_all'=>'cart_items#destroy_all' 
+   
+   get '/customers'=>'customers#show'
+   get '/customers/edit'=>'customers#edit'
+   patch '/cutomers/introduction'=>'cutomers#update'
+   get '/customers/confirm'=>'customers#confirm'
+   get '/customers/withdrawal'=>'customers#withdrawal'
+   
+   resources :cart_items,except:[:new,:show,:edit]
+   resources :orders,except:[:edit,:update,:destroy]
+   
+   post '/orders/check'=>'orders#check' 
+   get '/orders/complete'=>'orders#complete' 
   end
-  namespace :public do
-    get 'orders/new'
-    post 'orders/check'
-    get 'orders/complete'
-    post 'orders/finish'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-    patch 'cart_items/update'
-    delete 'cart_items/destroy'
-    delete 'cart_items/destroy_all'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    patch 'customers/update'
-    post 'customers/confirm'
-    patch 'customers/update'
-  end
-  namespace :public do
-    get 'sessions/new'
-    post 'sessions/create'
-    delete 'sessions/destroy'
-  end
-  namespace :public do
-    get 'registrations/new'
-    post 'registrations/create'
-  end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
-  devise_for :orders
-  devise_for :order_products
-  devise_for :cart_items
-  devise_for :items
-  devise_for :admins
-  devise_for :customers
+
+  devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
