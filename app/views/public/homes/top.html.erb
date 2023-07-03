@@ -1,5 +1,5 @@
 <main>
- LOGO
+<h1> <%= link_to "LOGO", root_path %> </h1>
    <a class="btn btn-info btn-sm btn-block mb-3 about" href="/about">About</a>
    <a class="btn btn-info btn-sm btn-block mb-3 items" href="/items">商品一覧</a>
    <a class="btn btn-info btn-sm btn-block mb-3   new_customer_registration" href="/customers/sign_up">新規登録</a>
@@ -14,5 +14,6 @@
 購入には会員登録が必要になります。
 
 <h2>新着商品</h2>
-商品名
+商品名<br>
+<%#= link_to "全ての商品を見る", items_path (@item.id) %>
 </main>

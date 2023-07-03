@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
   get '/about'=>'public/homes#about'
-  resources :items,only:[:show,:index]
   #get '/customers/sign_up'=>'customers#new'
   #resources :registrations,only:[:create]
   #delete '/customers/sign_out'=>'cusutomers#destroy'
@@ -34,7 +33,8 @@ Rails.application.routes.draw do
 
    resources :cart_items,except:[:new,:show,:edit]
    resources :orders,except:[:edit,:update,:destroy]
-
+   resources :items,only:[:show,:index]
+   
    post '/orders/check'=>'orders#check'
    get '/orders/complete'=>'orders#complete'
   end

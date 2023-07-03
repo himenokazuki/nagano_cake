@@ -1,2 +1,11 @@
 <h1>Admin::Items#new</h1>
 <p>Find me in app/views/admin/items/new.html.erb</p>
+<%= form_with model:@item,url: admin_items_path do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :name%>
+
+  <h4>Opinion</h4>
+  <%= f.text_field :introduction%>
+  <%= f.text_field :price%>
+  <%= f.submit 'Create Book',class: "btn btn-success"  %>
+  <% end %>
