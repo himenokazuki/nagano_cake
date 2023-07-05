@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2023_06_28_123220) do
     t.string "encrypted_password", default: "", null: false
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.string "encrypted_passward", null: false
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "telephone_number", null: false
