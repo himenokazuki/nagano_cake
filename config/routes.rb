@@ -20,21 +20,21 @@ Rails.application.routes.draw do
     resources :orders,only:[:show]
     get 'homes/top'
 
-    delete '/admin/sign_out'=>'sessions#destoroy'
+    delete '/admin/sign_out'=>'sessions#destroy'
   end
    scope module: :public do
    get '/cart_items/destroy_all'=>'cart_items#destroy_all'
 
    get '/customers'=>'customers#show'
-   get '/customers/edit'=>'customers#edit'
-   patch '/cutomers/introduction'=>'cutomers#update'
+   get '/customers/information/edit'=>'customers#edit',as:'customers_edit'
+   patch '/customers/introduction'=>'customers#update'
    get '/customers/confirm'=>'customers#confirm'
    get '/customers/withdrawal'=>'customers#withdrawal'
 
    resources :cart_items,except:[:new,:show,:edit]
    resources :orders,except:[:edit,:update,:destroy]
    resources :items,only:[:show,:index]
-   
+
    post '/orders/check'=>'orders#check'
    get '/orders/complete'=>'orders#complete'
   end

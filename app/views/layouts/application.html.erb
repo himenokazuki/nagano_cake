@@ -9,17 +9,32 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
- <h1> <%= link_to "LOGO", root_path %> </h1>
-   <%= link_to"About",about_path,method: :get %>
+  
+  <h1><%= link_to "LOGO", root_path %> </h1>
+   <% if customer_signed_in? %>
+   <%= link_to"マイページ",customers_path,method: :get %>
+   <%= link_to"商品一覧",items_path,method: :get %>
+   <%= link_to"カート",cart_items_path,method: :get %>
+   <%= link_to "ログアウト", destroy_customer_session_path,method: :delete %>
    
+   <% elsif admin_signed_in? %>
+   <%= link_to"商品一覧", admin_items_path,method: :get %>
+   <%= link_to"会員一覧", admin_customers_path,method: :get %>
+   <%= link_to"注文履歴一覧",admin_homes_top_path,method: :get %>
+   <%= link_to"ログアウト",destroy_admin_session_path,method: :delete %>
+  
+   <% else %>
+   <%= link_to"About",about_path,method: :get %>
    <%= link_to"商品一覧",items_path,method: :get %>
    <%= link_to"新規登録",new_customer_registration_path,method: :get %>
-   <%= link_to"ログイン",new_customer_session_path,method: :new %>
-   <%= link_to "ログアウト", destroy_customer_session_path,method: :delete %>
+   <%= link_to"ログイン",new_customer_session_path,method: :get %>
+   <% end %>
+   
    <p>
     <%= text_field_tag :search, params[:search] %>
     <%= submit_tag "Search", :name => nil %>
    </p>
+   
 
 
   <body>
