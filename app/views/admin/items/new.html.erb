@@ -1,11 +1,26 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
-<%= form_with model:@item,url:  do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :name%>
+<h1>商品新規登録</h1>
 
-  <h4>Opinion</h4>
-  <%= f.text_field :introduction%>
-  <%= f.text_field :price%>
-  <%= f.submit 'Create Book',class: "btn btn-success"  %>
-  <% end %>
+<%= form_with model:@item,url:admin_items_path, method: :post do |f| %>
+<table>
+  <tr>
+  <td>商品画像</td> 
+  <td><%= f.file_field :image, placeholder: "プロフィール画像", accept: "image/*" %></td>
+  </tr>
+  
+  <tr>
+    <td>商品名</td>
+    <td> <%= f.text_field :name%></td>
+  </tr>
+  
+  <tr>
+    <td>商品説明</td>
+    <td> <%= f.text_field :introduction%></td>
+  </tr>
+  
+  <tr>
+    <td> 税抜価格</td>
+    <td> <%= f.number_field :price%></td>
+  </tr>
+</table>
+<%= f.submit '新規登録',class: "btn btn-success"  %>
+<% end %>

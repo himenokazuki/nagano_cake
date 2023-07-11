@@ -7,7 +7,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
-       @item = Item.new(item_params)
+    @item = Item.new(item_params)
 
   if @item.save
   end
@@ -20,5 +20,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
+  end
+  
+  private
+  # ストロングパラメータ
+  def item_params
+    params.require(:item).permit(:image, :name,:introduction,:price)
   end
 end
