@@ -24,7 +24,7 @@
             <% @items.each do |item| %>
             <tr>
             <td><%= item.id %></td>
-            <td><%= item.name %></td>
+            <td><%= link_to "item.name",url:edit_admin_item_path,method: :get %></td>
             <td><%= item.price %></td>
             </tr>
             <% end %>
