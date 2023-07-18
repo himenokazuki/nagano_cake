@@ -1,2 +1,19 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<h1></h1>
+
+<table>
+      <tr>
+        <td><%= image_tag @item.get_profile_image(100,100) %></td>
+      </tr>
+      <tr>
+        <td><%= @item.name %></td>
+        <td><%= @item.introduction %></td>
+        <td><%= @item.price %>(税込)</td>
+      </tr>
+
+</table>
+    <%= form_with model: CartItem.new() do |f| %>
+    <%= f.hidden_field :item_id, value: @item.id %><%# 隠れて保存%>
+    <%= f.select :amount, *[1..10] %>
+
+    <%= f.submit "カートに入れる" %>
+    <% end %>

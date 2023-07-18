@@ -1,10 +1,25 @@
 
 
- ようこそ<%#= link_to current_customer.name,customers_edit_path(current_user), class: "user-name" %>
-
-<h1>商品一覧</h1>（全x件）
-<% @items.each do |item| %>
-商品名 ¥0,000  商品名 ¥0,000  商品名 ¥0,000  商品名 ¥0,000 <br>
-商品名 ¥0,000  商品名 ¥0,000  商品名 ¥0,000  商品名 ¥0,000 <br>
-<% end %>
+<h1>商品一覧</h1>（全<%= @items.count %>件）
+<table>
+  <thead>
+    <tr>
+      <th>商品画像</th>
+      <th>商品名</th>
+      <th>税込価格</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= image_tag item.get_profile_image(100,100) %></td>
+        <td><%= link_to item_path(item.id) do %> <%#= link_to item.name,items_path(item.id) %>
+        <%= item.name %>
+        <% end %>
+       </td>
+        <td><%= item.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= paginate @items %>
