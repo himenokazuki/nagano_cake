@@ -5,13 +5,21 @@
 　<%= render "public/shared/error_messages", resource: resource %>
 　<div class="field">
     (姓)<%= f.label :名前%><br />
-    <%= f.text_field :last_name_kana, autofocus: true %>
+    <%= f.text_field :last_name, autofocus: true %>
   </div>
 　<div class="field">
     (名)<%= f.label :名前%><br />
-    <%= f.text_field :first_name_kana, autofocus: true %>
+    <%= f.text_field :first_name, autofocus: true %>
   </div>
 
+<div class="field">
+    (セイ)<%= f.label :名前%><br />
+    <%= f.text_field :last_name_kana, autofocus: true %>
+  </div>
+　<div class="field">
+    (メイ)<%= f.label :名前%><br />
+    <%= f.text_field :first_name_kana, autofocus: true %>
+  </div>
 
   <div class="field">
     <%= f.label :メールアドレス %><br />
@@ -54,4 +62,4 @@
   <%= link_to "こちら", new_customer_session_path(@customer.id) %>からログインしてください。
 
 </div>
-
+<%= render "public/shared/links" %>
