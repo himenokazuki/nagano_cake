@@ -6,6 +6,7 @@
       会員ID
       氏名
       メールアドレス
+      ステータス
     </tr>
   </thead>
   <tbody>
@@ -14,6 +15,13 @@
       <td><%= customer.id %></td>
       <td><%= link_to customer.last_name,admin_customer_path(customer.id)%><%= link_to customer.first_name,admin_customer_path(customer.id) %></td>
       <td><%= customer.email %></td>
+      
+      <td><% if customer.is_deleted==false %>
+      <p>有効</p>
+      <% else %>
+      <p>無効</p>
+      <% end %>
+    　</td>
       </tr>
       <% end %>
   </tbody>
