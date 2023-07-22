@@ -1,14 +1,19 @@
 class Public::CartItemsController < ApplicationController
   def index
+    @cart_item= CartItem.all
   end
 
   def update
   end
 
   def destroy
+    cart_item = Cart_item.find(params[:id])
+    cart_item.destroy
+    redirect_to :"/cart_items"
   end
 
   def destroy_all
+   redirect_to :"/cart_items"
   end
 
   def create
