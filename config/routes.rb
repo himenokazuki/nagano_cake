@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     delete '/admin/sign_out'=>'sessions#destroy'
   end
    scope module: :public do
-   get '/cart_items/destroy_all'=>'cart_items#destroy_all'
+   delete '/cart_items/destroy_all'=>'cart_items#destroy_all'
 
    get '/customers'=>'customers#show'
    get '/customers/information/edit'=>'customers#edit',as:'customers_edit'
