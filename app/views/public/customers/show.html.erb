@@ -6,35 +6,35 @@
 <table border="1">
 <tr>
   <th>氏名</th>
-  <td><%#= current_costomers,first_name_kana,last_name_kana %></td>
+  <td><%= current_costomers.first_name,last_name %></td>
 </th>
 
 <tr>
   <th>カナ</th>
-  <td><%#= current_costomers,first_name_kana,last_name_kana %></td>
+  <td><%= current_costomers.first_name_kana,last_name_kana %></td>
 </tr>
 
 <tr>
   <th>郵便番号</th>
-  <td><%#= current_costomers,first_name_kana,last_name_kana %></td>
+  <td><%= current_costomers.postal_code %></td>
 </tr>
 
 <tr>
   <th>住所</th>
-  <td><%#= current_costomers,first_name_kana,last_name_kana %></td>
+  <td><%= current_costomers.address %></td>
 </tr>
 
 <tr>
   <th>電話番号</th>
-  <td><%#= current_costomers,first_name_kana,last_name_kana %></td>
+  <td><%= current_costomers.telephone_number %></td>
 </tr>
 
 <tr>
   <th>メールアドレス</th>
-  <td><%#= current_costomers,first_name_kana,last_name_kana %></td>
+  <td><%= current_costomers.email%></td>
 </tr>
 </table>
 
 
-配送先<%= button_to "一覧を見る" ,customers_edit_path %>
+<%#= button_to "一覧を見る" ,customers_edit_path %>
 注文履歴<%= button_to "一覧を見る" , orders_path,method: :get %>

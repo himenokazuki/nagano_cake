@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
       has_one_attached :image
       has_many :cart_items
+      has_many :order_products
  def  get_profile_image(width, height)
       
   unless image.attached?

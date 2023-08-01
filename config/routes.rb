@@ -30,13 +30,14 @@ Rails.application.routes.draw do
    patch '/customers/introduction'=>'customers#update'
    get '/customers/confirm'=>'customers#confirm'
    get '/customers/withdrawal'=>'customers#withdrawal'
+   post '/orders/check'=>'orders#check'
+   get '/orders/complete'=>'orders#complete'
 
    resources :cart_items,except:[:new,:show,:edit]
    resources :orders,except:[:edit,:update,:destroy]
    resources :items,only:[:show,:index]
 
-   post '/orders/check'=>'orders#check'
-   get '/orders/complete'=>'orders#complete'
+
   end
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
