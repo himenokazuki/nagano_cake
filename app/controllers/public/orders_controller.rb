@@ -22,6 +22,7 @@ class Public::OrdersController < ApplicationController
      @order.postege = 800
      @order.total_price = @order.postege + @cart_item.sum(&:subtotal)
      @order.save
+     @order=orderproducts.save
      redirect_to orders_complete_path
   end
 

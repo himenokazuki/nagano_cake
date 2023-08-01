@@ -5,8 +5,8 @@ class CreateOrderProducts < ActiveRecord::Migration[6.1]
     t.integer :item,          null: false
     t.integer :price_tax,     null: false
     t.integer :amount,        null: false
-    
-    #t.timestamps
+
+    t.timestamps
     end
   end
 end

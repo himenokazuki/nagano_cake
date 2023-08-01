@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2023_07_11_115247) do
     t.integer "item_id", null: false
     t.integer "customer_id", null: false
     t.integer "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -83,6 +85,8 @@ ActiveRecord::Schema.define(version: 2023_07_11_115247) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "order_products", force: :cascade do |t|
@@ -90,6 +94,8 @@ ActiveRecord::Schema.define(version: 2023_07_11_115247) do
     t.integer "item", null: false
     t.integer "price_tax", null: false
     t.integer "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -100,6 +106,8 @@ ActiveRecord::Schema.define(version: 2023_07_11_115247) do
     t.string "post_code", null: false
     t.string "address", null: false
     t.string "address_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
