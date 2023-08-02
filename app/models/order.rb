@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
-   has_many :order_products, dependent: :destroy
    belongs_to :customer
-   
+   has_many :order_products
+   has_many :items, through: :order_products
 def subtotal
     item.price*1.1+order.postage
 end
