@@ -34,7 +34,7 @@ class Public::OrdersController < ApplicationController
       order_products.order_id = @order.id
       order_products.amount = cart.amount
 # 購入が完了したらカート情報は削除するのでこちらに保存します
-      order_item.order_price = cart.item.price
+      order_products.price_tax = orders.total_price
 # カート情報を削除するので item との紐付けが切れる前に保存します
       order_item.save
      redirect_to orders_complete_path
@@ -64,6 +64,6 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-     params.require(:order).permit(:payment,:post_code,:address,:address_name,:total_price)
+     params.require(:order).permit(:payment,:post_code,:address,:address_name,:total_price,:item)
   end
 end
