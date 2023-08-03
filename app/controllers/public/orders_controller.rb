@@ -16,29 +16,29 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    cart_item = current_customer.cart_items.all
+    
+     @cart_item = current_customer.cart_items.all
 # ログインユーザーのカートアイテムをすべて取り出して cart_items に入れます
      @order = current_customer.orders.new(order_params)
-     @order = Order.new(order_params)
      @order.customer_id = current_customer.id
      @order.postege = 800
-     #@order.total_price = @order.postege + @cart_item.sum(&:subtotal)
-
+     @order.total_price = @order.postege + @cart_item.sum(&:subtotal)
+     @order=
     if @order.save
+
 # ここに至るまでの間にチェックは済ませていますが、念の為IF文で分岐させています
-      cart_item.each do |cart|
+      @cart_item.each do |cart|
 # 取り出したカートアイテムの数繰り返します
 # order_products にも一緒にデータを保存する必要があるのでここで保存します
-      order_products = OrderProducts.new
-      order_products.item_id = cart.item
+      order_products = OrderProduct.new
+      order_products.item_id = cart.item_id
       order_products.order_id = @order.id
       order_products.amount = cart.amount
 # 購入が完了したらカート情報は削除するのでこちらに保存します
-      order_products.price_tax = orders.total_price
-# カート情報を削除するので item との紐付けが切れる前に保存します
-      order_item.save
+      order_products.price_tax =  @order.total_price
+
      redirect_to orders_complete_path
-      cart_items.destroy_all
+      @cart_item.destroy_all
       end
     end
   end
