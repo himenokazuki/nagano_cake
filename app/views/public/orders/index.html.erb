@@ -13,12 +13,12 @@
 <td><%= order.created_at %></td>
 <td><%= order.post_code %><%= order.address %><%= order.address_name %></td>
 <td>
- <% order_products.order.each do |item| %>
- <%= item.name %>
+ <% order.order_products.each do |order_product| %>
+ <%= order_product.item.name %>
  <% end %>
  </td>
 <td><%= order.total_price %></td>
-<td><%= link_to "表示する",orders_path,method: :get %></td>
+<td><%= link_to "表示する",order_path%></td>
 </tr>
 <% end %>
 </table>

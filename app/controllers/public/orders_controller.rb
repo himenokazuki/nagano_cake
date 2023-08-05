@@ -16,7 +16,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    
+
      @cart_item = current_customer.cart_items.all
 # ログインユーザーのカートアイテムをすべて取り出して cart_items に入れます
      @order = current_customer.orders.new(order_params)
@@ -36,10 +36,11 @@ class Public::OrdersController < ApplicationController
       order_products.amount = cart.amount
 # 購入が完了したらカート情報は削除するのでこちらに保存します
       order_products.price_tax =  @order.total_price
-
-     redirect_to orders_complete_path
-      @cart_item.destroy_all
+      order_products.save
       end
+      @cart_item.destroy_all
+      redirect_to orders_complete_path
+
     end
   end
   def confirm
@@ -56,10 +57,14 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders=current_customer.orders
+    @orders=current_customer
+    @orders=order.id
   end
 
   def show
+    @order=Order.find(params[:id])
+    @order=current.customer.orders
+    @order.idr=order.order_products
   end
 
   private
