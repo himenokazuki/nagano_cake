@@ -57,14 +57,15 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders=current_customer
-    @orders=order.id
+    @orders=Order.all
   end
 
   def show
     @order=Order.find(params[:id])
-    @order=current.customer.orders
-    @order.idr=order.order_products
+    @order_products=@order.order_products
+    
+    #@order=current_customer.orders
+    #@order=order_product.find(params[:id])
   end
 
   private

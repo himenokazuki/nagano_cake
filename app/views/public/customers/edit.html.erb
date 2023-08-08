@@ -1,12 +1,12 @@
 <h1>会員情報編集</h1><br>
-<p>氏名</p><br>
-<p>フリガナ</p><br>
-<p>郵便番号</p><br>
-<p>住所</p><br>
-<p>電話番号</p><br>
-<p>メールアドレス</p><br>
+<%= form_with model: @customer,url: customers_introduction_path(customer.id) do |f| %>
+<p>氏名</p><%= f.text_field :last_name %><%= f.text_field :first_name %>
+<p>フリガナ</p><br><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %>
+<p>郵便番号</p><br><%= f.text_field :postal_code %>
+<p>住所</p><br><%= f.text_field :address %>
+<p>電話番号</p><br><%= f.text_field :telephone_number %>
+<p>メールアドレス</p><br><%= f.text_field :email %>
 
-<%= button_to "編集内容を保存する" , customers_introduction_path, method: :patch %>
-
-
-<%= button_to "退会する" , customers_withdrawal_path, method: :patch,data: { confirm: '本当に退会しますか？' },class: "btn btn-danger" %>
+<%= f.submit"編集内容を保存する"(@customer.id) %>
+<%= f.submit "退会する" %>
+<% end %>
