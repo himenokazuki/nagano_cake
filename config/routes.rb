@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     get '/customers'=>'customers#show'
     patch '/customers/introduction'=>'customers#update'
     get '/customers/confirm'=>'customers#confirm'
-    get '/customers/withdrawal'=>'customers#withdrawal'
+    patch '/customers/withdrawal'=>'customers#withdrawal'
     post '/orders/check'=>'orders#check'
     get '/orders/complete'=>'orders#complete'
     resources :cart_items,except:[:new,:show,:edit]
