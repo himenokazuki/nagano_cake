@@ -1,5 +1,5 @@
-<h2>Log in1</h2>
-ログイン<br>
+<h2>Log in</h2>
+<%= flash[:notice] %>
 会員の方はこちらからログイン
 <%= form_with model: @customer, url: customer_session_path do |f| %>
 

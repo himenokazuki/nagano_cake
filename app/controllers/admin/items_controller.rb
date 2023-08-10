@@ -9,6 +9,8 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.save
+    redirect_to  admin_item_path(@item.id)
 
   if @item.save
   end
@@ -32,6 +34,6 @@ class Admin::ItemsController < ApplicationController
   private
   # ストロングパラメータ
   def item_params
-    params.require(:item).permit(:image, :name,:introduction,:price)
+    params.require(:item).permit(:image, :name,:introduction,:price,:id)
   end
 end
