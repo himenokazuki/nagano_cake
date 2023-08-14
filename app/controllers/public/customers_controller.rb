@@ -1,6 +1,5 @@
 class Public::CustomersController < ApplicationController
   def show
-
     @customer=current_customer
   end
 
@@ -10,12 +9,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer = current.customer
-    @customer.update(customer_params)
-    if customer.save
+    @customer = current_customer
+   if @customer.update(customer_params)
        flash[:notice] = "successfully "
       redirect_to customers_path(@customer.id)
-    end
+   end
   end
 
   def confirm

@@ -8,10 +8,14 @@ class Public::OrdersController < ApplicationController
     @total=0
     @order=Order.new(order_params)
 
-    if params[:order][:address_number] == '0'
+    if params[:order][:address_number] == '0'#アドレスナンバーを０に渡す
       @order.post_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.address_name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:address_number] == '1'#アドレスナンバーを１に渡す
+
+    else
+      redirect_to  new_order_path
     end
   end
 
@@ -22,8 +26,8 @@ class Public::OrdersController < ApplicationController
      @order = current_customer.orders.new(order_params)
      @order.customer_id = current_customer.id
      @order.postege = 800
+
      @order.total_price = @order.postege + @cart_item.sum(&:subtotal)
-     @order=
     if @order.save
 
 # ここに至るまでの間にチェックは済ませていますが、念の為IF文で分岐させています
@@ -35,7 +39,7 @@ class Public::OrdersController < ApplicationController
       order_products.order_id = @order.id
       order_products.amount = cart.amount
 # 購入が完了したらカート情報は削除するのでこちらに保存します
-      order_products.price_tax =  @order.total_price
+      order_products.price_tax =  cart.amount*cart.item.price*1.1
       order_products.save
       end
       @cart_item.destroy_all
@@ -43,12 +47,12 @@ class Public::OrdersController < ApplicationController
 
     end
   end
-  def confirm
-  @order = Order.new(order_params)
-  @order.post_code = current_customer.post_code
-  @order.address = current_customer.address
-  @order.address = current_customer.address_name
-  end
+  #def confirm
+  #@order = Order.new(order_params)
+  #@order.post_code = current_customer.post_code
+  #@order.address = current_customer.address
+  #@order.address = current_customer.address_name
+ # end
 
   def complete
   end
@@ -63,7 +67,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order=Order.find(params[:id])
     @order_products=@order.order_products
-    
+
     #@order=current_customer.orders
     #@order=order_product.find(params[:id])
   end

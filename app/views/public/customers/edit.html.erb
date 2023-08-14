@@ -1,5 +1,5 @@
 <h1>会員情報編集</h1><br>
-<%= form_with model: @customer do |f| %>
+<%= form_with model:@customer,url:customers_introduction_path,method: :patch do |f| %>
 <p>氏名</p><%= f.text_field :last_name %><%= f.text_field :first_name %>
 <p>フリガナ</p><br><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %>
 <p>郵便番号</p><br><%= f.text_field :postal_code %>

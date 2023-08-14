@@ -12,11 +12,9 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= image_tag item.get_profile_image(100,100) %></td>
-        <td><%= link_to item_path(item.id) do %> <%#= link_to item.name,items_path(item.id) %>
-        <%= item.name %>
-        <% end %>
-       </td>
+        <td><%= link_to image_tag ("item.get_profile_image","class": "image"(100,100),item_path(item.id) %></td>
+         <%#= link_to item.name,items_path(item.id) %>
+        <td><%= item.name %></td>
         <td><%= item.price %></td>
       </tr>
     <% end %>
