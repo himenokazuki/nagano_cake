@@ -8,8 +8,8 @@
        <tr><td>税込価格（税抜価格）<br></td><td><%= (@item.price*1.1).round %>&emsp;(<%= @item.price%>)円</td></tr> 
                                                                   <!-- to_i-->
 </table>
-    <%= form_with model: CartItem.new() do |f| %>
-    <%= f.hidden_field :item_id, value: @item.id %><%# 隠れて保存%>
+    <%= form_with model: @cart_item do |f| %>
+    <%= f.hidden_field :item_id, value: @item.id %><%# 隠れてidをcart_itemモデルに保存%>
     <%= f.select :amount, *[1..10] %>
 
     <%= f.submit "カートに入れる" %>

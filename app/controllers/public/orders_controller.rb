@@ -1,10 +1,18 @@
 class Public::OrdersController < ApplicationController
   def new
     @orders=Order.new
+    @cart_item = current_customer.cart_items
+    if  @cart_item == []
+      # render cart_items_path
+      render "public/cart_items/index"
+    end
   end
 
+
+
   def check
-    @cart_item = current_customer.cart_items
+
+
     @total=0
     @order=Order.new(order_params)
 

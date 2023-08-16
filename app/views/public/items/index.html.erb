@@ -3,21 +3,21 @@
 <h1>商品一覧</h1>（全<%= @items.count %>件）
 <table>
   <thead>
-    <tr>
-      <th>商品画像</th>
-      <th>商品名</th>
-      <th>税込価格</th>
-    </tr>
-  </thead>
-  <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= link_to image_tag ("item.get_profile_image","class": "image"(100,100),item_path(item.id) %></td>
-         <%#= link_to item.name,items_path(item.id) %>
-        <td><%= item.name %></td>
-        <td><%= item.price %></td>
-      </tr>
-    <% end %>
+       <td>
+       <%= link_to item_path(item.id) do %>
+       <%= image_tag item.get_profile_image(100,100) %></br>
+       <% end %>
+       商品名<%= item.name %>
+       ￥<%= item.price %>
+       </td>
+     </tr>
+       <% end %>
+  </thead>
+  <tbody>
+   
+   
   </tbody>
 </table>
 <%= paginate @items %>
