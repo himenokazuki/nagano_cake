@@ -15,7 +15,7 @@ class Public::OrdersController < ApplicationController
 
     @total=0
     @order=Order.new(order_params)
-
+    @cart_item=current_customer.cart_items
     if params[:order][:address_number] == '0'#アドレスナンバーを０に渡す
       @order.post_code = current_customer.postal_code
       @order.address = current_customer.address
